@@ -113,15 +113,14 @@ def edit_product_form(product_id):
         image_url = save_image(image_file)
 
         data = {
-            "code": request.form["code"],
-            "name": request.form["name"],
-            "price": float(request.form["price"]),
-            "category": request.form["category"],
-            "image_url": request.form["image_url"],
+            "code": request.form.get("code"),
+            "name": request.form.get("name"),
+            "price": float(request.form.get("price")),
+            "category": request.form.get("category"),
         }
 
         if image_url:
-            data["image_url"] = image_url
+            data["image_url"] = image_url  # Solo si subió una nueva imagen
 
         service.update_product(product_id, data)
         return redirect(url_for("product_bp.products_page"))
@@ -129,6 +128,7 @@ def edit_product_form(product_id):
     product = service.get_product(product_id)
     if not product:
         return "Producto no encontrado", 404
+
     return render_template("products/form.html", product=product)
 
 
