@@ -26,8 +26,11 @@ flask_store/
 │   ├── routes/
 │   │   └── product_routes.py
 │   ├── services/
+        └── product_service.py
 │   ├── repositories/
+        └── product_repository.py
 │   ├── models/
+        └── product_model.py
 │   ├── static/
 │   │   ├── css/
 │   │   │   └── styles.css
@@ -39,6 +42,8 @@ flask_store/
 │   │   └── products/
 │   │       ├── list.html
 │   │       └── form.html
+├── .env
+├── .gitignore
 ├── run.py
 ├── requirements.txt
 └── README.md
@@ -51,8 +56,8 @@ flask_store/
 ### 1. Cloná el repo y creá el entorno virtual
 
 ```bash
-git clone https://github.com/tuusuario/flask-store.git
-cd flask-store
+git clone https://github.com/dovinhoyos/Flask_MongoDB_Store.git
+cd Flask_MongoDB_Store
 python -m venv venv
 source venv/bin/activate  # En Windows: venv\Scripts\activate
 ```
