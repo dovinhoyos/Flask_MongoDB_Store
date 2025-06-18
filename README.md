@@ -124,7 +124,7 @@ MONGO_DB_NAME=flask_store
 
 ## 🙌 Autor
 
-**Gentleman Programming Clone**  
+**dovinhoyos-dev**  
 Arquitectura limpia, código bello, papurri vibes y pasión por enseñar.
 
 ---
