@@ -2,6 +2,7 @@ from flask import Flask
 from app.routes.product_routes import product_bp
 from app.config import Config
 from pymongo import MongoClient
+from app.routes.auth_routes import auth_bp
 
 
 def create_app():
@@ -14,5 +15,7 @@ def create_app():
 
     # Register Blueprints
     app.register_blueprint(product_bp, url_prefix="/products")
+
+    app.register_blueprint(auth_bp, url_prefix="/auth")
 
     return app
