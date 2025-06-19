@@ -2,41 +2,39 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Productos{% endblock %}</title>
+    <title>{% block title %}App{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block head %}{% endblock %}  <!-- Para inyectar scripts extra si se necesita -->
   </head>
-<body class="min-h-screen flex flex-col items-center p-6">
+  <body class="min-h-screen bg-gradient-to-br from-gray-900 to-slate-800 text-white">
 
-  {% if session.get('user_id') %}
-    <!-- Barra fija arriba a la derecha -->
-    <div class="fixed top-4 right-4 z-50 flex items-center gap-4 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg">
-      <!-- Info del usuario -->
-      <div class="text-sm text-white/80">
-        <span class="font-semibold">{{ session.get('email') }}</span>
-        <span class="ml-2 {% if session.get('role') == 'admin' %}bg-yellow-500{% else %}bg-blue-600{% endif %} text-white text-xs px-2 py-1 rounded-md uppercase">
-          {{ session.get('role') }}
-        </span>
+    {% if session.get('user_id') %}
+      <div class="fixed top-4 right-4 z-50 flex items-center gap-4 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg">
+        <div class="text-sm text-white/80">
+          <span class="font-semibold">{{ session.get('email') }}</span>
+          <span class="ml-2 {% if session.get('role') == 'admin' %}bg-yellow-500{% else %}bg-blue-600{% endif %} text-white text-xs px-2 py-1 rounded-md uppercase">
+            {{ session.get('role') }}
+          </span>
+        </div>
+        <a href="{{ url_for('auth_bp.logout') }}"
+           class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md shadow transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
+          </svg>
+          Cerrar sesión
+        </a>
       </div>
+    {% endif %}
 
-      <!-- Botón logout -->
-      <a href="{{ url_for('auth_bp.logout') }}"
-         class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md shadow transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
-        </svg>
-        Cerrar sesión
-      </a>
-    </div>
-  {% endif %}
-
-  <!-- Ajustamos el margin-top para no quedar debajo del header -->
-  <div class="w-full max-w-5xl glass rounded-2xl shadow-xl p-6 mt-28">
-    {% block content %}{% endblock %}
-  </div>
+    <main class="w-full max-w-5xl mx-auto p-6 mt-28">
+      {% block content %}{% endblock %}
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ url_for('static', filename='js/alerts.js') }}"></script>
+    {% block scripts %}{% endblock %} <!-- Para scripts extra por vista -->
+
   </body>
 </html>

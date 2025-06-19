@@ -3,9 +3,10 @@
 {% block title %}Lista de Productos{% endblock %}
 
 {% block content %}
-  <h1 class="text-3xl font-bold mb-6">Lista de productos</h1>
+<div class="glass p-6 rounded-2xl shadow-lg">
+  <h1 class="text-3xl font-bold mb-6 text-center">Lista de productos</h1>
 
-  <div class="mb-4">
+  <div class="mb-4 text-right">
     <a href="{{ url_for('product_bp.create_product_form') }}"
        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md shadow">
       Crear nuevo producto
@@ -20,8 +21,8 @@
           <th class="px-4 py-2">Nombre</th>
           <th class="px-4 py-2">Precio</th>
           <th class="px-4 py-2">Categoría</th>
+          <th class="px-4 py-2">Imagen</th>
           <th class="px-4 py-2">Acciones</th>
-<th class="px-4 py-2">Imagen</th>
         </tr>
       </thead>
       <tbody>
@@ -31,14 +32,13 @@
           <td class="px-4 py-2">{{ p.name }}</td>
           <td class="px-4 py-2">${{ p.price }}</td>
           <td class="px-4 py-2">{{ p.category }}</td>
-
-<td class="px-4 py-2">
-  {% if p.image_url %}
-    <img src="{{ p.image_url }}" alt="img" class="w-20 h-20 object-cover rounded-md shadow">
-  {% else %}
-    <span class="text-gray-500 italic">Sin imagen</span>
-  {% endif %}
-</td>
+          <td class="px-4 py-2">
+            {% if p.image_url %}
+              <img src="{{ p.image_url }}" alt="img" class="w-20 h-20 object-cover rounded-md shadow">
+            {% else %}
+              <span class="text-gray-500 italic">Sin imagen</span>
+            {% endif %}
+          </td>
           <td class="px-4 py-2 flex gap-2">
             <a href="{{ url_for('product_bp.edit_product_form', product_id=p.id) }}"
                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md">
@@ -52,10 +52,11 @@
         </tr>
         {% else %}
         <tr>
-          <td colspan="5" class="text-center py-4 text-gray-400">No hay productos aún.</td>
+          <td colspan="6" class="text-center py-4 text-gray-400">No hay productos aún.</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
+</div>
 {% endblock %}

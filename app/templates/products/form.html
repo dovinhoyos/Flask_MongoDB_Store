@@ -1,67 +1,48 @@
-{% extends "base.html" %} {% block title %}{{ 'Editar' if product else 'Nuevo'
-}} producto{% endblock %} {% block content %}
-<h1 class="text-3xl font-bold mb-6">
-  {{ 'Editar' if product else 'Crear' }} producto
-</h1>
-<form method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4">
-  <div>
-    <label class="block mb-1 text-sm">Código</label>
-    <input
-      type="text"
-      name="code"
-      required
-      value="{{ product.code if product else '' }}"
-      class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-  <div>
-    <label class="block mb-1 text-sm">Nombre</label>
-    <input
-      type="text"
-      name="name"
-      required
-      value="{{ product.name if product else '' }}"
-      class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-  <div>
-    <label class="block mb-1 text-sm">Precio</label>
-    <input
-      type="number"
-      name="price"
-      step="0.01"
-      required
-      value="{{ product.price if product else '' }}"
-      class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
-  <div>
-    <label class="block mb-1 text-sm">Categoría</label>
-    <input
-      type="text"
-      name="category"
-      required
-      value="{{ product.category if product else '' }}"
-      class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-  </div>
- <div>
-    <label class="block mb-1 text-sm">Imagen</label>
-    <input type="file" name="image_file"
-           class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500">
-  </div>
-  <div class="flex justify-between mt-4">
-    <button
-      type="submit"
-      class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md shadow"
-    >
-      Guardar
-    </button>
-    <a
-      href="{{ url_for('product_bp.products_page') }}"
-      class="text-gray-300 hover:text-white"
-      >← Volver</a
-    >
-  </div>
-</form>
+{% extends "base.html" %}
+
+{% block title %}{{ 'Editar' if product else 'Nuevo' }} producto{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-2xl shadow-lg w-full max-w-xl mx-auto">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+    {{ 'Editar' if product else 'Crear' }} producto
+  </h1>
+  <form method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4">
+    <div>
+      <label class="block mb-1 text-sm">Código</label>
+      <input type="text" name="code" required value="{{ product.code if product else '' }}"
+             class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div>
+      <label class="block mb-1 text-sm">Nombre</label>
+      <input type="text" name="name" required value="{{ product.name if product else '' }}"
+             class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div>
+      <label class="block mb-1 text-sm">Precio</label>
+      <input type="number" name="price" step="0.01" required value="{{ product.price if product else '' }}"
+             class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div>
+      <label class="block mb-1 text-sm">Categoría</label>
+      <input type="text" name="category" required value="{{ product.category if product else '' }}"
+             class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div>
+      <label class="block mb-1 text-sm">Imagen</label>
+      <input type="file" name="image_file"
+             class="w-full px-4 py-2 rounded-md bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div class="flex justify-between mt-4">
+      <button type="submit"
+              class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md shadow">
+        Guardar
+      </button>
+      <a href="{{ url_for('product_bp.products_page') }}"
+         class="text-gray-300 hover:text-white">
+        ← Volver
+      </a>
+    </div>
+  </form>
+</div>
 {% endblock %}
